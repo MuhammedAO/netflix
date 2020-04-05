@@ -43,3 +43,8 @@ ul li:hover{
 ul li:hover svg path{
     fill: white;
 }
+
+/* Active tab => first */
+.active{
+    border-bottom: 4px solid var(--main-red);
+}
