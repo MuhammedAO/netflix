@@ -48,3 +48,11 @@ ul li:hover svg path{
 .active{
     border-bottom: 4px solid var(--main-red);
 }
+
+.tab-selected{
+    color: white;
+}
+
+.tab-selected svg path{
+    fill: white;
+}
