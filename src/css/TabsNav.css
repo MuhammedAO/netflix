@@ -4,11 +4,25 @@
     fill: var(--main-grey);
 }
 
+@media (max-width: 900px){
+ .firstTab{
+     width: 2.4rem;
+     height: 2.4rem;
+ }
+}
+
 .secondTab{
     width: 9.6875rem ; 
     height:9.6875rem ;
     fill: var(--main-grey);
 }
+
+@media (max-width: 900px){
+    .secondTab{
+        width: 8rem;
+        height: 8rem;
+    }
+   }
 
 .thirdTab{
     width: 4.375rem ; 
@@ -16,6 +30,13 @@
     fill: var(--main-grey);
 }
 
+
+@media (max-width: 900px){
+    .thirdTab{
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+   }
 
 
 .tabs{
@@ -55,4 +76,22 @@ ul li:hover svg path{
 
 .tab-selected svg path{
     fill: white;
+}
+
+/* MQ for tab navs */
+@media (min-width: 900px){
+.mdScreen{
+    display: none;
+}
+}
+
+@media (max-width: 900px){
+ .lgScreen{
+     display: none;
+ }
+
+ .mdScreen{
+     display: block;
+     margin-bottom: 0.4rem;
+ }
 }
