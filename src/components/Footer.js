@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {Icon} from 'react-icons-kit'
 import {iosWorld} from 'react-icons-kit/ionicons/iosWorld'
 import {arrowSortedDown} from 'react-icons-kit/typicons/arrowSortedDown'
+import {generateMedia} from 'styled-media-query'
 
  class Footer extends Component {
   state = {
@@ -18,7 +19,7 @@ import {arrowSortedDown} from 'react-icons-kit/typicons/arrowSortedDown'
  render() {
   return (
    <FooterContainer>
-  <span style={{marginLeft:'17.5%', fontSize:'1.125rem'}}>Questions? call <Link>234-90-323-126-28</Link></span>
+  <span style={{marginLeft:'17.5%', fontSize:'1.125rem'}}>Questions? call <Link to="">234-90-323-126-28</Link></span>
   <div className="footer-columns">
   <ul>
    <li>
@@ -108,6 +109,10 @@ import {arrowSortedDown} from 'react-icons-kit/typicons/arrowSortedDown'
 
 export default Footer
 
+const customMedia = generateMedia({
+  tablet: '740px',
+})
+
 const FooterContainer = styled.footer`
 background: var(--main-deep-dark);
 padding-top: 10rem;
@@ -120,7 +125,11 @@ margin: 1rem auto 0;
 font-size: 0.9rem;
 overflow: auto;
 display: grid;
-grid-template-columns: repeat(4, 1fr)
+grid-template-columns: repeat(4, 1fr);
+${customMedia.lessThan('tablet')`
+  grid-template-columns: repeat(2, 1fr);
+
+ `}
 }
 
 ul li {
