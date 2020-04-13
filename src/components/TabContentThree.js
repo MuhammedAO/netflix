@@ -117,7 +117,7 @@ span{
 
 .btn{
  margin-left: 3rem;
- margin-right: 5.1rem;
+ margin-right: 2.1rem;
  grid-column: 9 / 12;
  ${customMedia.lessThan('mdDesktop')`
   grid-column : 1 / -1;
