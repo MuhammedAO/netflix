@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import logo from '../assets/svg/logo.svg'
 import styled from 'styled-components'
 import LoginForm from '../components/login/LoginForm'

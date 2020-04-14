@@ -1,24 +1,107 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import fbLogo from '../../assets/images/fb-logo.png'
 
+
+const emailRegex = RegExp(
+ /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
+
 const LoginForm = () => {
+
+ const [formData, setFormData] = useState({
+  email:'',
+  password:'',
+  emailError:'',
+  passwordError:''
+ }) 
+
+
+ const {email, password, emailError, passwordError} = formData
+
+ const handleEmailChange = e => setFormData({ ...formData, [e.target.name]: e.target.value})
+
+ const handlePasswordChange = e => setFormData({ ...formData, [e.target.name]: e.target.value})
+ //validate
+ const validate = () => {
+  let inputError = false
+  const errors = {
+   emailError:'',
+   passwordError:''
+  }
+  if(!formData.email) {
+   inputError = true
+   errors.emailError = 'Please enter a valid email'
+  } 
+  else if(!formData.email.match(emailRegex)) 
+  {
+   inputError = true
+   errors.emailError = (
+    <span style={{color:'red'}}>Your email address must be valid</span>
+   )
+  }
+
+  if(formData.password.length < 4){ 
+   inputError = true
+   errors.passwordError = 'Your password must contain more than 4 characters'
+  }
+  setFormData(formData => ({
+    ...formData,
+    ...errors
+  }))
+
+  return inputError
+ }
+
+ const onSubmit = e => {
+  e.preventDefault();
+
+  const err = validate();
+
+  if(!err){
+    setFormData(formData => ({
+      ...formData,
+      email:'',
+      password:''
+    }))
+  
+  }
+
+ 
+  
+ }
+ 
  return (
   <FormContainer>
    <div className="form-container">
     <form >
      <h1>Sign in</h1>
      <div className="input-container">
-      <input className="input-empty" type="email" required />
+      <input className= {emailError ? 'input-error input-empty' : 'input-empty'}
+      type="email"
+      name="email"
+      value={email} 
+      required
+      onChange={e => handleEmailChange(e)}
+        />
       <label>Email or Phone Number</label>
+      <span style={{color: '#db7302'}}>{emailError}</span>
      </div>
      <div className="input-container">
-      <input className="input-empty" type="password" required />
+      <input 
+      className={passwordError ? 'input-error input-empty' : 'input-empty'}
+       type="password" 
+       name="password"
+       value={password} 
+       required
+       onChange={e => handlePasswordChange(e)}
+       />
       <label>Password</label>
+      <span style={{color: '#db7302'}}>{passwordError}</span>
      </div>
      <div className="input-container">
-      <Button href="/" type="submit">Sign in</Button>
+      <Button href="/" onClick={e => onSubmit(e)} type="submit">Sign in</Button>
      </div>
      <label className="checkbox-container">
       Remember me
@@ -95,6 +178,10 @@ z-index: 1;
 
  input:focus{
   outline: none;
+ }
+
+ .input-error{
+  border-bottom: 1px solid #db7302;
  }
 
  //Checkbox
